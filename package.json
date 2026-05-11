@@ -1,0 +1,50 @@
+{
+  "name": "openclaw-todo",
+  "version": "0.1.0",
+  "description": "Local-first hierarchical todo/task tools for OpenClaw.",
+  "type": "module",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/scshafe/openclaw-todo.git"
+  },
+  "bin": {
+    "openclaw-todo": "./src/cli.js"
+  },
+  "exports": {
+    ".": "./src/index.js",
+    "./store": "./src/store.js"
+  },
+  "files": [
+    "openclaw.plugin.json",
+    "src",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "test": "node --test",
+    "smoke": "node -e \"import('./src/index.js').then(() => console.log('plugin import ok'))\""
+  },
+  "dependencies": {
+    "@sinclair/typebox": "^0.34.41"
+  },
+  "devDependencies": {
+    "openclaw": "2026.5.7"
+  },
+  "engines": {
+    "node": ">=22.13.0"
+  },
+  "openclaw": {
+    "extensions": [
+      "./src/index.js"
+    ],
+    "compat": {
+      "pluginApi": ">=2026.5.7",
+      "minGatewayVersion": "2026.5.7"
+    },
+    "build": {
+      "openclawVersion": "2026.5.7",
+      "pluginSdkVersion": "2026.5.7"
+    }
+  }
+}

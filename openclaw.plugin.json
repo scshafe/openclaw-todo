@@ -1,0 +1,26 @@
+{
+  "id": "openclaw-todo",
+  "name": "OpenClaw Todo",
+  "description": "Local-first hierarchical todo/task tools for OpenClaw.",
+  "contracts": {
+    "tools": [
+      "todo_create",
+      "todo_list",
+      "todo_update",
+      "todo_complete"
+    ]
+  },
+  "activation": {
+    "onStartup": true
+  },
+  "configSchema": {
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+      "dbPath": {
+        "type": "string",
+        "description": "Optional absolute path to the SQLite database. Defaults to OpenClaw state under openclaw-todo/todos.sqlite."
+      }
+    }
+  }
+}
