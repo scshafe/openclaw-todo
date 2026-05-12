@@ -5,20 +5,32 @@
 - [x] SQLite schema for hierarchical tasks.
 - [x] Agent tools for create/list/update/complete.
 - [x] Tiny CLI for manual inspection.
-- [ ] Plugin install smoke test against a running OpenClaw gateway.
+- [x] Plugin install smoke test against a running OpenClaw gateway.
 
-## Phase 1 — Better task model
+## Phase 1 — Agent-native project management
 
-- [ ] Add tags/labels.
-- [ ] Add priority and due dates.
-- [ ] Add richer search.
-- [ ] Add task event log/history.
+Goal: evolve `openclaw-todo` from a simple todo list into OpenClaw's local project/task spine for agents and Cole.
+
+Prioritize:
+
+- [ ] Project conventions or explicit task `type` values for project / phase / work item.
+- [ ] Statuses beyond `open/done/archived`, especially `in_progress` and `blocked`.
+- [ ] Owner/assignee field for humans or agents, e.g. `Cole`, `Chloe`, `local-todo`, `buddha`.
+- [ ] Lightweight blockers/dependencies, including blocked reason and/or dependent task IDs.
+- [ ] Artifact/reference fields for repos, commits, PRs, docs, notes, sessions, files, or URLs.
+- [ ] Project status summaries grouped by project, owner, and blocked/in-progress/open state.
+
+Explicitly not prioritized for now:
+
+- [ ] Priority field.
+- [ ] Due dates.
+- [ ] Event/activity history log.
 
 ## Phase 2 — OpenClaw UI integration
 
 - [ ] Research current Control UI plugin surfaces.
-- [ ] Add a route or panel for browsing tasks if supported.
-- [ ] Support project/task trees and quick completion.
+- [ ] Add a route or panel for browsing project/task trees if supported.
+- [ ] Support project/task trees, quick completion, blocked visibility, and owner filters.
 
 ## Phase 3 — Sync/export
 
