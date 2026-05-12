@@ -14,9 +14,10 @@ npm pack --dry-run --json
 npm run package:check
 ```
 
-`npm run package:check` verifies the package declares `peerDependencies.openclaw`,
-runs `npm pack --dry-run --json`, checks required files are present, and rejects
-obvious local database/secret candidates.
+`npm run package:check` runs tests, smoke-imports the plugin entry, and performs
+an `npm pack --dry-run --json` package preview. Before tagging, inspect the pack
+file list for required runtime files and accidental local database/secret
+candidates.
 
 ## Runtime acceptance check
 
