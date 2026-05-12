@@ -1,7 +1,7 @@
 {
   "name": "openclaw-todo",
   "version": "0.1.0",
-  "description": "Local-first hierarchical todo/task tools for OpenClaw.",
+  "description": "Local-first hierarchical project and task tools for OpenClaw.",
   "type": "module",
   "license": "MIT",
   "repository": {

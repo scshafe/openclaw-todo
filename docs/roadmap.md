@@ -13,12 +13,12 @@ Goal: evolve `openclaw-todo` from a simple todo list into OpenClaw's local proje
 
 Prioritize:
 
-- [ ] Project conventions or explicit task `type` values for project / phase / work item.
-- [ ] Statuses beyond `open/done/archived`, especially `in_progress` and `blocked`.
-- [ ] Owner/assignee field for humans or agents, e.g. `Cole`, `Chloe`, `local-todo`, `buddha`.
-- [ ] Lightweight blockers/dependencies, including blocked reason and/or dependent task IDs.
-- [ ] Artifact/reference fields for repos, commits, PRs, docs, notes, sessions, files, or URLs.
-- [ ] Project status summaries grouped by project, owner, and blocked/in-progress/open state.
+- [x] Project conventions or explicit task `type` values for project / phase / work item.
+- [x] Statuses beyond `open/done/archived`, especially `in_progress` and `blocked`.
+- [x] Owner/assignee field for humans or agents, e.g. `Cole`, `Chloe`, `local-todo`, `buddha`.
+- [x] Lightweight blockers/dependencies, including blocked reason and/or dependent task IDs.
+- [x] Artifact/reference fields for repos, commits, PRs, docs, notes, sessions, files, or URLs.
+- [x] Project status summaries grouped by project, owner, and blocked/in-progress/open state.
 
 Explicitly not prioritized for now:
 

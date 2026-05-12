@@ -1,6 +1,6 @@
 # openclaw-todo
 
-Local-first hierarchical todo/task tools for OpenClaw.
+Local-first hierarchical project and task tools for OpenClaw.
 
 This is an early scaffold for a private, agent-friendly todo system. The source
 repo intentionally contains no user data, machine-specific paths, secrets, or
@@ -13,7 +13,14 @@ runtime databases.
   - `todo_list`
   - `todo_update`
   - `todo_complete`
+  - `todo_project_summary`
 - SQLite storage using Node's built-in `node:sqlite` module.
+- Agent-native project fields:
+  - explicit `type`: `task`, `project`, `phase`, or `work_item`
+  - status: `open`, `in_progress`, `blocked`, `done`, or `archived`
+  - `owner` for humans or agents
+  - `blockedReason` plus dependency task IDs
+  - artifact/reference JSON for repos, commits, PRs, docs, notes, sessions, files, and URLs
 - Runtime data defaults to OpenClaw state, not the repository:
   - `$OPENCLAW_TODO_DB`, if set
   - plugin config `dbPath`, if set
@@ -87,8 +94,11 @@ openclaw plugins inspect openclaw-todo --runtime --json
 ## CLI examples
 
 ```bash
-openclaw-todo create "Draft the OpenClaw todo plugin" --notes "Start with SQLite + tools"
-openclaw-todo list
+openclaw-todo create "Evolve openclaw-todo" --type project --owner Cole
+openclaw-todo create "Add PM schema" --type work_item --owner local-todo --status in_progress --parent <project-id>
+openclaw-todo update <task-id> --status blocked --blocked-reason "Waiting on API review" --depends-on <other-task-id> --artifact docs/roadmap.md
+openclaw-todo list --type work_item --owner local-todo
+openclaw-todo summary
 openclaw-todo done <task-id>
 ```
 

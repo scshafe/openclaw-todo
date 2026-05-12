@@ -1,13 +1,14 @@
 {
   "id": "openclaw-todo",
   "name": "OpenClaw Todo",
-  "description": "Local-first hierarchical todo/task tools for OpenClaw.",
+  "description": "Local-first hierarchical project and task tools for OpenClaw.",
   "contracts": {
     "tools": [
       "todo_create",
       "todo_list",
       "todo_update",
-      "todo_complete"
+      "todo_complete",
+      "todo_project_summary"
     ]
   },
   "activation": {
