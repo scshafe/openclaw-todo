@@ -1,6 +1,5 @@
 import { Type } from "@sinclair/typebox";
 import { definePluginEntry } from "openclaw/plugin-sdk/plugin-entry";
-import { createTodoStore } from "./store.js";
 
 const Status = Type.Union([
   Type.Literal("open"),
@@ -8,7 +7,8 @@ const Status = Type.Union([
   Type.Literal("archived"),
 ]);
 
-function withStore(api, fn) {
+async function withStore(api, fn) {
+  const { createTodoStore } = await import("./store.js");
   const dbPath = api?.config?.dbPath;
   const store = createTodoStore({ dbPath });
   try {
@@ -43,7 +43,7 @@ export default definePluginEntry({
         parentId: Type.Optional(Type.String()),
       }),
       async execute(_id, params) {
-        return textResult(withStore(api, (store) => store.createTask(params)));
+        return textResult(await withStore(api, (store) => store.createTask(params)));
       },
     });
 
@@ -61,7 +61,7 @@ export default definePluginEntry({
         const filters = { ...params };
         if (filters.rootOnly) filters.parentId = null;
         delete filters.rootOnly;
-        return textResult(withStore(api, (store) => store.listTasks(filters)));
+        return textResult(await withStore(api, (store) => store.listTasks(filters)));
       },
     });
 
@@ -76,7 +76,7 @@ export default definePluginEntry({
         parentId: Type.Optional(Type.String({ description: "New parent task id. Use empty string to move to root." })),
       }),
       async execute(_id, params) {
-        return textResult(withStore(api, (store) => store.updateTask(params)));
+        return textResult(await withStore(api, (store) => store.updateTask(params)));
       },
     });
 
@@ -87,7 +87,7 @@ export default definePluginEntry({
         id: Type.String(),
       }),
       async execute(_id, params) {
-        return textResult(withStore(api, (store) => store.completeTask(params.id)));
+        return textResult(await withStore(api, (store) => store.completeTask(params.id)));
       },
     });
   },

@@ -21,9 +21,23 @@ runtime databases.
   - otherwise `~/.openclaw/openclaw-todo/todos.sqlite`
 - Small `openclaw-todo` CLI for local inspection.
 
-## Install locally in OpenClaw
+## Install modes
 
-From a checkout:
+Do not commit generated SQLite databases or local `.env` files.
+
+### Local development checkout only
+
+Use a linked install while actively editing this repo. Install dependencies in
+the checkout first because local path/link installs do not repair plugin deps.
+
+```bash
+npm install
+openclaw plugins install --link ./path/to/openclaw-todo
+openclaw gateway restart
+openclaw plugins inspect openclaw-todo --runtime --json
+```
+
+Plain local path install is also a development-only option:
 
 ```bash
 npm install
@@ -32,7 +46,43 @@ openclaw gateway restart
 openclaw plugins inspect openclaw-todo --runtime --json
 ```
 
-Do not commit the generated SQLite database or local `.env` files.
+### Git/tag install
+
+For a stable source install, prefer a tagged revision:
+
+```bash
+openclaw plugins install git:https://github.com/scshafe/openclaw-todo.git#v0.1.0
+openclaw gateway restart
+openclaw plugins inspect openclaw-todo --runtime --json
+```
+
+### Package acceptance with npm-pack
+
+Before publishing or asking someone to install a release candidate, pack it and
+install the tarball with OpenClaw's `npm-pack:` source. This tests the package
+shape without relying on this checkout.
+
+```bash
+npm run package:check
+npm pack
+openclaw plugins install npm-pack:./openclaw-todo-0.1.0.tgz
+openclaw gateway restart
+openclaw plugins inspect openclaw-todo --runtime --json
+```
+
+`npm-pack:` still installs into the configured OpenClaw environment. Do not run
+that command against a live gateway unless you intend to install the plugin.
+
+### Future npm/ClawHub install
+
+Once published, expected install forms are:
+
+```bash
+openclaw plugins install npm:openclaw-todo
+openclaw plugins install clawhub:openclaw-todo
+openclaw gateway restart
+openclaw plugins inspect openclaw-todo --runtime --json
+```
 
 ## CLI examples
 
@@ -48,6 +98,7 @@ openclaw-todo done <task-id>
 npm install
 npm test
 npm run smoke
+npm run package:check
 ```
 
-See [`docs/roadmap.md`](docs/roadmap.md).
+See [`docs/packaging.md`](docs/packaging.md) and [`docs/roadmap.md`](docs/roadmap.md).
